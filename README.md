@@ -3,6 +3,21 @@
 OpenSCAD-customizable Gridfinity bins for storing
 [Material Swatches][material-swatches].
 
+## Setup
+
+This model uses [Gridfinity Rebuilt in OpenSCAD][original-model-url] as a git
+submodule.
+
+To set everything up, first clone this repository. Then, in the repository
+directory, run:
+
+```console
+git submodule init
+git submodule update
+```
+
+Now `model.scad` can be opened in OpenSCAD.
+
 ## Attribution and License
 
 This is a remix of
