@@ -3,6 +3,8 @@
 OpenSCAD-customizable [Gridfinity][gridfinity] bins for storing
 [Material Swatches][material-swatches].
 
+[This model is also available on Printables][printables-model].
+
 ![Photo](/images/photo.jpg)
 ![Animated example](/images/demo.gif)
 
@@ -35,4 +37,5 @@ and this remix use the [MIT License](/LICENSE).
 [gridfinity-rebuilt-openscad]: https://github.com/kennetek/gridfinity-rebuilt-openscad
 [gridfinity]: https://www.youtube.com/watch?v=ra_9zU-mnl8
 [material-swatches]: https://www.printables.com/model/2256-material-swatches
+[printables-model]: https://www.printables.com/model/587675
 [v1]: https://www.printables.com/model/557060
