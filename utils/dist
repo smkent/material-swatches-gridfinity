@@ -19,7 +19,7 @@ render() {
     gridy="${1?}"; shift;
     gridz="${1?}"; shift;
     separator="${1?}"; shift;
-    out_file="${tmp_dir}/swatch-bin-${gridx}x${gridy}x${gridz}.stl"
+    out_file="${tmp_dir}/stl/swatch-bin-${gridx}x${gridy}x${gridz}.stl"
     mkdir -vp "$(dirname "${out_file}")"
     (
         set -x
@@ -47,10 +47,20 @@ rm -vf "${output_file}"
 
 abs_output_file="$(readlink -f "${output_file}")"
 
-# shellcheck disable=SC2046
-zip -r "${abs_output_file}" \
-    ./*.scad \
-    $(find third-party/ -iname '*.scad')
+# Strip third-party sub directory paths from toplevel *.scad file(s)
+for scad_file in $(git ls-files '*.scad'); do
+    dest="${tmp_dir}/$(basename "${scad_file}")"
+    sed \
+        -Ee 's:^((include|use)\s<)third-party/([/a-zA-Z0-9-]+/)*(.+)(>;$):\1\4\5:g' \
+        "${scad_file}" \
+        > "${dest}"
+    grep -Ee '^(include|use)' "${dest}" || true
+done
+
+(
+    git ls-files images/
+    find third-party/ -iname '*.scad'
+) | xargs cp -t "${tmp_dir}"
 
 for dir in images "${tmp_dir}"; do
     (
