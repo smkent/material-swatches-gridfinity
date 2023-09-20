@@ -1,12 +1,18 @@
-# Gridfinity Material Swatches Holder V2 (parametric) (remix)
+# Gridfinity Material Swatches Holder V2
 
-OpenSCAD-customizable Gridfinity bins for storing
+OpenSCAD-customizable [Gridfinity][gridfinity] bins for storing
 [Material Swatches][material-swatches].
+
+![Photo](/images/photo.jpg)
+![Animated example](/images/demo.gif)
+
+This is a parametric version of [my similar V1 model][v1], which was created
+using TinkerCAD.
 
 ## Setup
 
-This model uses [Gridfinity Rebuilt in OpenSCAD][original-model-url] as a git
-submodule.
+This model uses [Gridfinity Rebuilt in OpenSCAD][gridfinity-rebuilt-openscad]
+as a git submodule.
 
 To set everything up, first clone this repository. Then, in the repository
 directory, run:
@@ -16,16 +22,17 @@ git submodule init
 git submodule update
 ```
 
-Now `model.scad` can be opened in OpenSCAD.
+Now `swatch-bin.scad` can be opened in OpenSCAD.
 
 ## Attribution and License
 
 This is a remix of
-[**Gridfinity Rebuilt in OpenSCAD** by **kennetek**][original-model-url].
+[**Gridfinity Rebuilt in OpenSCAD** by **kennetek**][gridfinity-rebuilt-openscad].
 
-Both the original model and this remix are licensed under
-[Creative Commons (4.0 International License) Attribution-NonCommercial-ShareAlike][license].
+Gridfinity, [Gridfinity Rebuilt in OpenSCAD][gridfinity-rebuilt-openscad],
+and this remix use the [MIT License](/LICENSE).
 
+[gridfinity-rebuilt-openscad]: https://github.com/kennetek/gridfinity-rebuilt-openscad
+[gridfinity]: https://www.youtube.com/watch?v=ra_9zU-mnl8
 [material-swatches]: https://www.printables.com/model/2256-material-swatches
-[original-model-url]: https://github.com/kennetek/gridfinity-rebuilt-openscad
-[license]: http://creativecommons.org/licenses/by-nc-sa/4.0/
+[v1]: https://www.printables.com/model/557060

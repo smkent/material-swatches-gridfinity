@@ -1,0 +1,60 @@
+#!/bin/sh
+
+output_file="dist.zip"
+
+set -e
+
+cd "$(dirname "${0}")/.."
+
+tmp_dir="$(mktemp -d)"
+rm_tmp_dir() {
+    if [ -d "${tmp_dir}" ]; then
+        rm -rvf "${tmp_dir}"
+    fi
+}
+trap rm_tmp_dir EXIT
+
+render() {
+    gridx="${1?}"; shift;
+    gridy="${1?}"; shift;
+    gridz="${1?}"; shift;
+    separator="${1?}"; shift;
+    out_file="${tmp_dir}/swatch-bin-${gridx}x${gridy}x${gridz}.stl"
+    mkdir -vp "$(dirname "${out_file}")"
+    (
+        set -x
+        openscad \
+            swatch-bin.scad \
+            -D "gridx=${gridx}" \
+            -D "gridy=${gridy}" \
+            -D "gridz=${gridz}" \
+            -D "Separator_Style=${separator}" \
+            -o "${out_file}"
+    )
+}
+
+for vars in \
+        "1 1" "1 2" "1 3" "1 4" \
+        "2 2" "2 3" "2 4" \
+    ; do
+    # shellcheck disable=SC2086
+    render ${vars} 3 1
+done
+
+set -x
+
+rm -vf "${output_file}"
+
+abs_output_file="$(readlink -f "${output_file}")"
+
+# shellcheck disable=SC2046
+zip -r "${abs_output_file}" \
+    ./*.scad \
+    $(find third-party/ -iname '*.scad')
+
+for dir in images "${tmp_dir}"; do
+    (
+        cd "${dir}"
+        zip -r "${abs_output_file}" .
+    )
+done
