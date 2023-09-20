@@ -10,6 +10,10 @@
 
 include <third-party/gridfinity-rebuilt-openscad/gridfinity-rebuilt-utility.scad>;
 
+/* [Setup Parameters] */
+$fa = 8;
+$fs = 0.25;
+
 /* [General Settings] */
 // number of bases along x-axis
 gridx = 2;
@@ -64,7 +68,6 @@ function gf_height() = height(gridz, gridz_define, style_lip, enable_zsnap);
 function swatch_row_count(grid_y) = floor(((l_grid * grid_y) - d_wall2 * 2) / (sw_t + swatch_separation));
 
 module swatch_shape() {
-    $fn = 20;
     rad = 1.0;
     hull() {
         translate([rad, rad])
